@@ -19,8 +19,11 @@ export default function Home() {
         <Link href="/coletas">
           <a>Coletas</a>
         </Link>
-        <Link href="/participacao">
-          <a>Participação</a>
+        <Link href="/denuncia">
+          <a>Denúncia</a>
+        </Link>
+        <Link href="/avaliacao">
+          <a>Avaliação</a>
         </Link>
       </main>
 
