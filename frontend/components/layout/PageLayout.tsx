@@ -11,7 +11,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-16 py-0 flex flex-col flex-1 justify-center items-center">
+      <main className="px-16 py-0 flex flex-col flex-1 justify-center items-center bg-gray-200">
         {children}
       </main>
       <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">
