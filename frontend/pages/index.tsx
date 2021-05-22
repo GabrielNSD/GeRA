@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Link href="/educacao">
         <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center">
+          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
             <Image
               src="/icons/info.svg"
               alt="Saiba mais sobre resíduos sólidos"
@@ -19,10 +19,10 @@ export default function Home() {
       </Link>
       <Link href="/coletas">
         <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center">
+          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
             <Image
               src="/icons/truck.svg"
-              alt="Saiba mais sobre resíduos sólidos"
+              alt="Informe-se sobre os horários de coleta na sua região"
               width="48px"
               height="48px"
             />{" "}
@@ -32,7 +32,7 @@ export default function Home() {
       </Link>
       <Link href="/denuncia">
         <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center">
+          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
             <Image
               src="/icons/warning.svg"
               alt="Avise sobre problemas com descarte irregular de resíduos sólidos "
@@ -45,7 +45,7 @@ export default function Home() {
       </Link>
       <Link href="/avaliacao">
         <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center">
+          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
             <Image
               src="/icons/check.svg"
               alt="Diga para a prefeitura como está o serviço de coleta na sua área"
