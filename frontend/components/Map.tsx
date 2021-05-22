@@ -9,7 +9,7 @@ const Map = () => {
       center={[-5.9231, -35.2677]}
       zoom={14}
       scrollWheelZoom={true}
-      style={{ height: "50vh", width: "50vw", margin: "0 auto" }}
+      style={{ height: "50vh", width: "90vw", margin: "0 auto" }}
     >
       <TileLayer url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ2FicmllbG5zZCIsImEiOiJja296NGxyeDIwZnNzMnB0YWJjZjY4N282In0.R6cP6EYyGDCHBWfdpsRkhw" />
       <Marker position={[-5.9231, -35.2677]} draggable={true} >
