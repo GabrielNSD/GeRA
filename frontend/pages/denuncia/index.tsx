@@ -8,7 +8,7 @@ export default function Denuncia() {
 
   const [openMap, setOpenMap] = useState(false);
 
-  /* const success = (position: any) => {
+  const success = (position: any) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
@@ -20,14 +20,14 @@ export default function Denuncia() {
     console.log("erro");
   }
 
-  if (!navigator.geolocation) {
+  if (navigator?.geolocation) {
+    console.log("tem");
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
     console.log("nao tem ");
     setLat("-7.1877");
     setLong("-48.2098");
-  } else {
-    console.log("tem");
-    navigator.geolocation.getCurrentPosition(success, error);
-  } */
+  }
 
   const sendComplaint = async (event: any) => {
     event.preventDefault();
@@ -47,18 +47,18 @@ export default function Denuncia() {
   };
 
   const backdropClickHandler = () => {
-    setOpenMap(false)
-  }
+    setOpenMap(false);
+  };
 
-  let backdrop = null
+  let backdrop = null;
 
-  if(openMap) {
-    backdrop = <Backdrop click={backdropClickHandler}/>
+  if (openMap) {
+    backdrop = <Backdrop click={backdropClickHandler} />;
   }
 
   return (
     <>
-      <ModalMap openModalMap={openMap} initialLocation={[lat,long]}/>
+      <ModalMap openModalMap={openMap} initialLocation={[lat, long]} />
       {backdrop}
       <div>
         <h1>Denúncia</h1>
