@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz",
+  "info": {
+    "name": "Quiz",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "localizacao": {
+      "type": "json",
+      "required": true
+    },
+    "avaliacao_coleta_rsd": {
+      "type": "integer",
+      "max": 10,
+      "min": 1,
+      "default": 1,
+      "required": true
+    }
+  }
+}
