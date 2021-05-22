@@ -93,18 +93,31 @@ export default function Coletas() {
         <TabPanels>
           <TabPanel>
             {allSchedule.map(({ nome, coleta_caminhao }) => (
-              <div>{nome}</div>
+              <>
+                <div>Rota {nome}</div>
+                {coleta_caminhao
+                  .map(
+                    ({ dia, turno }: { dia: string; turno: string }) =>
+                      `${dia} - ${turno}`
+                  )
+                  .join("; ")}
+              </>
             ))}
-            <pre>{JSON.stringify(allSchedule, null, 2)}</pre>
           </TabPanel>
           <TabPanel>
-            {" "}
-            <div className="w-4/5 border-2 border-black rounded-xl">
-              {" "}
-              {/* essa tabela deveria ser alimentada pelo schedule, mas ele funciona de forma itermitente */}
-              Dias de coleta: Segunda, Terça, Sábado <br />
-              Turno: manhã
-            </div>
+            {allSchedule
+              .filter(({ coleta_seletiva }) => coleta_seletiva.length > 0)
+              .map(({ nome, coleta_seletiva }) => (
+                <>
+                  <div>Rota {nome}</div>
+                  {coleta_seletiva
+                    .map(
+                      ({ dia, turno }: { dia: string; turno: string }) =>
+                        `${dia} - ${turno}`
+                    )
+                    .join("; ")}
+                </>
+              ))}
           </TabPanel>
         </TabPanels>
       </Tabs>
