@@ -60,31 +60,7 @@ export default function Denuncia() {
 
   return (
     <>
-      <ModalMap openModalMap={openMap} initialLocation={[lat, long]} />
-      {backdrop}
-      <div>
-        <h1>Denúncia</h1>
-        <form onSubmit={sendComplaint} className="flex flex-col">
-          <button>Usar localização atual</button>
-          <button
-            onClick={() => {
-              setOpenMap((prevState) => !prevState);
-            }}
-          >
-            Indicar localização
-          </button>
-          <label htmlFor="descricao">Descrição</label>
-          <input
-            id="descricao"
-            name="descricao"
-            type="text"
-            required
-            className="border-2"
-            minLength={50}
-          />
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
+      <h1>Denúncia</h1>
     </>
   );
 }

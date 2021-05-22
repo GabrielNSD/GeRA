@@ -1,8 +1,7 @@
 export default function Separacao() {
-    return (
-      <div>
-        <h1>Separação</h1>
-      </div>
-    );
-  }
-  
+  return (
+    <>
+      <h1>Separação</h1>
+    </>
+  );
+}

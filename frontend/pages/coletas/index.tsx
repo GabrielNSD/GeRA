@@ -49,23 +49,25 @@ export default function Coletas() {
   }, []);
 
   return (
-    <div className="h-screen w-screen">
-      <Tabs>
-        <TabPanels>
-          <TabPanel>Dias de coleta seletiva na sua região</TabPanel>
-          <TabPanel>Dias de coleta de resíduos na sua região</TabPanel>
-        </TabPanels>
-        <TabList>
-          <Tab>Seletiva</Tab>
-          <Tab>Resíduos</Tab>
-        </TabList>
-      </Tabs>
-      <div className="h-3/4 w-3/4">
-        <MapWithNoSSR
-          initialLocation={["-7.2156", "-48.2456"]}
-          polygons={polygons}
-        />
+    <>
+      <div className="h-screen w-screen">
+        <Tabs>
+          <TabPanels>
+            <TabPanel>Dias de coleta seletiva na sua região</TabPanel>
+            <TabPanel>Dias de coleta de resíduos na sua região</TabPanel>
+          </TabPanels>
+          <TabList>
+            <Tab>Seletiva</Tab>
+            <Tab>Resíduos</Tab>
+          </TabList>
+        </Tabs>
+        <div className="h-3/4 w-3/4">
+          <MapWithNoSSR
+            initialLocation={["-7.2156", "-48.2456"]}
+            polygons={polygons}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
