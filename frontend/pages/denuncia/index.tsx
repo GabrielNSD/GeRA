@@ -8,6 +8,8 @@ export default function Denuncia() {
 
   const [openMap, setOpenMap] = useState(false);
 
+  const [description, setDescription] = useState("")
+
   const success = (position: any) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -31,13 +33,13 @@ export default function Denuncia() {
     }
   }
 
-  const sendComplaint = async (event: any) => {
-    event.preventDefault();
+  const sendComplaint = async () => {
+    //event.preventDefault();
 
     const res = await fetch("http://localhost:1337/denuncias", {
       body: JSON.stringify({
         localizacao: { lat: lat, long: long },
-        descricao: event.target.descricao.value,
+        descricao: description,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +62,17 @@ export default function Denuncia() {
 
   return (
     <>
+    {backdrop}
       <h1>Denúncia</h1>
+      <div>
+        <ModalMap openModalMap={openMap} initialLocation={["-7.1877","-48.2098"]}/> {/* use [lat,long] for initialLocation instead */}
+        <button onClick={()=>{setOpenMap(prevState => !prevState)}}>Informar localidade</button>
+        <form>
+            <label>Descrição</label>
+            <input type="text" name="descricao" id="descricao" onChange={(e)=>{setDescription(e.target.value)}}></input>
+            <button type="submit" onClick={()=>{sendComplaint()}}>Enviar</button>
+        </form>
+      </div>
     </>
   );
 }
