@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Tabs, TabPanels, TabList, TabPanel, Tab } from "@reach/tabs";
 
+import { returnInsideZone } from "../../utils/zones";
+
 export default function Coletas() {
   const MapWithNoSSR = dynamic(() => import("../../components/Map"), {
     ssr: false,
   });
 
   const [polygons, setPolygons] = useState([""]);
+  const [crTable, setceTable] = useState([""]);
 
   const retriveZones = async () => {
     //event.preventDefault();
     const resulArray: Array<any> = [];
+    const crSchedule: Array<any> = [];
 
     const res = await fetch("http://localhost:1337/zonas", {
       headers: {
@@ -22,16 +26,21 @@ export default function Coletas() {
 
     const result = await res.json();
     console.log(result);
-    result.map((item: any) =>
+    result.map((item: any) => {
       resulArray.push([
         item.nome,
         item.geometria.geometry.coordinates[0].map(
           ([lat, long]: [number, number]) => [long, lat]
         ),
-      ])
-    );
+      ]);
+      crSchedule.push([item.nome, item.coleta_caminhão]);
+    });
 
     console.log(resulArray);
+    console.log(
+      "Teste zonas ",
+      returnInsideZone(["-7.2156", "-48.2456"], resulArray)
+    );
     setPolygons(resulArray);
   };
 

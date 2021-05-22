@@ -1,6 +1,6 @@
 export const isInside = (point: Array<any>, polygon: Array<Array<any>>) => {
-  const latArray = polygon.map((item) => item[0]);
-  const longArray = polygon.map((item) => item[1]);
+  const latArray = polygon.map((item) => parseFloat(item[0]));
+  const longArray = polygon.map((item) => parseFloat(item[1]));
 
   let minLat = Number.MAX_SAFE_INTEGER;
   let maxLat = Number.MIN_SAFE_INTEGER;
@@ -9,22 +9,22 @@ export const isInside = (point: Array<any>, polygon: Array<Array<any>>) => {
   let maxLong = Number.MIN_SAFE_INTEGER;
 
   for (const i of latArray) {
-    const floatI = parseFloat(i);
-    if (floatI < minLat) {
-      minLat = floatI;
+
+    if (i < minLat) {
+      minLat = i;
     }
-    if (floatI > maxLat) {
-      maxLat = floatI;
+    if (i > maxLat) {
+      maxLat = i;
     }
   }
 
   for (const i of longArray) {
-    const floatI = parseFloat(i);
-    if (floatI < minLong) {
-      minLong = floatI;
+
+    if (i < minLong) {
+      minLong = i;
     }
-    if (floatI > maxLong) {
-      maxLong = floatI;
+    if (i > maxLong) {
+      maxLong = i;
     }
   }
 
@@ -37,3 +37,12 @@ export const isInside = (point: Array<any>, polygon: Array<Array<any>>) => {
     return true;
   }
 };
+
+
+export const returnInsideZone = (location: Array<any>, zoneData: Array<any>) => {
+    for (const i of zoneData) {
+        if (isInside(location, i[1])) {
+            return i[0]
+        }
+    }
+}
