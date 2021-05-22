@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "zonas",
+  "info": {
+    "name": "Zona",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "geometria": {
+      "type": "json",
+      "required": true,
+      "unique": true
+    },
+    "coleta_caminhao": {
+      "type": "component",
+      "repeatable": true,
+      "component": "horario.dias-da-semana"
+    },
+    "coleta_seletiva": {
+      "type": "component",
+      "repeatable": true,
+      "component": "horario.dias-da-semana"
+    }
+  }
+}
