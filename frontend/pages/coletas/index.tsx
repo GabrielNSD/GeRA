@@ -74,7 +74,7 @@ export default function Coletas() {
   return (
     <>
       <h1>Dias de coleta de resíduos na sua região</h1>
-      <div style={{ width: "80vw" }}>
+      <div style={{ minWidth: "300px", width: "80vh", height: "80vw" }}>
         <MapWithNoSSR
           initialLocation={["-7.2156", "-48.2456"]}
           polygons={polygons}
