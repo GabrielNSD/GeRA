@@ -14,7 +14,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <main className="px-16 py-0 flex flex-col flex-1 justify-center items-center bg-gray-200">
         {children}
       </main>
-      <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">
+      {/* <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">
         <a
           className="flex justify-center place-items-center flex-grow"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -23,7 +23,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         >
           Powered by Potiguares
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }
