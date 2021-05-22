@@ -9,7 +9,7 @@ export default function Coletas() {
     <div>
       <h1>Coletas</h1>
       <div>
-        <MapWithNoSSR />
+        <MapWithNoSSR initialLocation={["-5.9231", "-35.2677"]}/>
       </div>
     </div>
   );

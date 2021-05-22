@@ -1,12 +1,11 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Educacao() {
-    return (
-      <div>
-        <h1>Educação</h1>
-        <div className="flex flex-col">
-        <Link href="/educacao/organicos">
-          <a>Orgânicos</a>
+  return (
+
+      <div className="flex flex-col h-screen items-center justify-center">
+        <Link href="/educacao/organicos" >
+          <div className="m-4 border-2 p-8 rounded-xl">Orgânicos</div>
         </Link>
         <Link href="/educacao/reciclaveis">
           <a>Recicláveis</a>
@@ -18,7 +17,6 @@ export default function Educacao() {
           <a>Separação</a>
         </Link>
       </div>
-      </div>
-    );
-  }
-  
+    
+  );
+}
