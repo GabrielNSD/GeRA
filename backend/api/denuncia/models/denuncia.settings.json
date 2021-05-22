@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "denuncias",
+  "info": {
+    "name": "Denúncia",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "localizacao": {
+      "type": "json",
+      "required": true
+    },
+    "descricao": {
+      "type": "string",
+      "required": true,
+      "minLength": 50,
+      "maxLength": 4000
+    },
+    "imagem": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
