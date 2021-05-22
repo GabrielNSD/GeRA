@@ -15,10 +15,10 @@ const Map = (props: MapProps) => {
     parseFloat(props.initialLocation[1]),
   ];
 
-  const testArea = props.polygons ? props.polygons[0] : null;
+  const testArea = props.polygons ? (props.polygons.length ?  props.polygons[0] : null) : null;
 
   let polygons = [];
-  if (props.polygons) {
+  if (props.polygons && props.polygons.length > 0) {
     polygons = props.polygons //.map((item: any) => item[1]);
   }
 
