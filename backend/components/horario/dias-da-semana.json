@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_horario_dias_da_semanas",
+  "info": {
+    "name": "Dias da semana",
+    "icon": "calendar-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "dia": {
+      "type": "enumeration",
+      "enum": [
+        "domingo",
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado"
+      ],
+      "required": true
+    },
+    "turno": {
+      "type": "enumeration",
+      "enum": [
+        "manha",
+        "tarde",
+        "noite"
+      ],
+      "required": true,
+      "default": "manha"
+    }
+  }
+}
