@@ -1,8 +1,16 @@
+import React from "react";
+import dynamic from "next/dynamic";
+
 export default function Coletas() {
-    return (
+  const MapWithNoSSR = dynamic(() => import("../../components/Map"), {
+    ssr: false
+  });
+  return (
+    <div>
+      <h1>Coletas</h1>
       <div>
-        <h1>Coletas</h1>
+        <MapWithNoSSR />
       </div>
-    );
-  }
-  
+    </div>
+  );
+}
