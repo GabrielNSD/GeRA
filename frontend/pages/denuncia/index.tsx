@@ -20,13 +20,15 @@ export default function Denuncia() {
     console.log("erro");
   }
 
-  if (navigator?.geolocation) {
-    console.log("tem");
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    console.log("nao tem ");
-    setLat("-7.1877");
-    setLong("-48.2098");
+  if (typeof window !== "undefined") {
+    if (navigator?.geolocation) {
+      console.log("tem");
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("nao tem ");
+      setLat("-7.1877");
+      setLong("-48.2098");
+    }
   }
 
   const sendComplaint = async (event: any) => {
