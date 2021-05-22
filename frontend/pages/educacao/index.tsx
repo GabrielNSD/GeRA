@@ -1,10 +1,10 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Educacao() {
-    return (
-      <div>
-        <h1>Educação</h1>
-        <div className="flex flex-col">
+  return (
+    <>
+      <h1>Educação</h1>
+      <div className="flex flex-col">
         <Link href="/educacao/organicos">
           <a>Orgânicos</a>
         </Link>
@@ -18,7 +18,6 @@ export default function Educacao() {
           <a>Separação</a>
         </Link>
       </div>
-      </div>
-    );
-  }
-  
+    </>
+  );
+}
