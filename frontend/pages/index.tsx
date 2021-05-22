@@ -4,58 +4,62 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <Link href="/educacao">
-        <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
-            <Image
-              src="/icons/info.svg"
-              alt="Saiba mais sobre resíduos sólidos"
-              width="48px"
-              height="48px"
-            />{" "}
-            Educação
-          </div>
-        </a>
-      </Link>
-      <Link href="/coletas">
-        <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
-            <Image
-              src="/icons/truck.svg"
-              alt="Informe-se sobre os horários de coleta na sua região"
-              width="48px"
-              height="48px"
-            />{" "}
-            Coletas
-          </div>
-        </a>
-      </Link>
-      <Link href="/denuncia">
-        <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
-            <Image
-              src="/icons/warning.svg"
-              alt="Avise sobre problemas com descarte irregular de resíduos sólidos "
-              width="48px"
-              height="48px"
-            />{" "}
-            Denúncia
-          </div>
-        </a>
-      </Link>
-      <Link href="/avaliacao">
-        <a>
-          <div className="p-4 my-4 w-52 bg-gray-50 rounded-md shadow-md flex items-center justify-around">
-            <Image
-              src="/icons/check.svg"
-              alt="Diga para a prefeitura como está o serviço de coleta na sua área"
-              width="48px"
-              height="48px"
-            />{" "}
-            Avaliação
-          </div>
-        </a>
-      </Link>
+      <progress value="70" max="100" className="mb-1"></progress>
+      <div className="mb-8">3 dias até a próxima coleta</div>
+      <div className="grid grid-cols-2 grid-row-2 gap-x-4 w-52">
+        <Link href="/educacao">
+          <a>
+            <div className="p-4 my-4 bg-gray-50 rounded-md shadow-md flex flex-col items-center text-sm rounded-2xl">
+              <Image
+                src="/icons/i.svg"
+                alt="Saiba mais sobre resíduos sólidos"
+                width="42px"
+                height="42px"
+              />{" "}
+              Informações
+            </div>
+          </a>
+        </Link>
+        <Link href="/coletas">
+          <a>
+            <div className="p-4 my-4  bg-gray-50 rounded-md shadow-md flex flex-col items-center justify-around text-sm rounded-2xl">
+              <Image
+                src="/icons/coleta.svg"
+                alt="Informe-se sobre os horários de coleta na sua região"
+                width="42px"
+                height="42px"
+              />{" "}
+              Coletas
+            </div>
+          </a>
+        </Link>
+        <Link href="/denuncia">
+          <a>
+            <div className="p-4 my-4  bg-gray-50 rounded-md shadow-md flex flex-col items-center justify-around text-sm rounded-2xl">
+              <Image
+                src="/icons/denuncias.svg"
+                alt="Avise sobre problemas com descarte irregular de resíduos sólidos "
+                width="42px"
+                height="42px"
+              />{" "}
+              Denúncias
+            </div>
+          </a>
+        </Link>
+        <Link href="/avaliacao">
+          <a>
+            <div className="p-4 my-4  bg-gray-50 rounded-md shadow-md flex flex-col items-center justify-around text-sm rounded-2xl">
+              <Image
+                src="/icons/avaliacoes.svg"
+                alt="Diga para a prefeitura como está o serviço de coleta na sua área"
+                width="42px"
+                height="42px"
+              />{" "}
+              Avaliações
+            </div>
+          </a>
+        </Link>
+      </div>
     </>
   );
 }
