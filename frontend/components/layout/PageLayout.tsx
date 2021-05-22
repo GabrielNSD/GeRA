@@ -2,7 +2,7 @@ import Head from "next/head";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="page flex flex-col h-screen justify-between relative">
+    <div className="page flex flex-col min-h-screen justify-between relative">
       <Head>
         <title>GeRA - Gestão de Resíduos Sólidos de Araguaína</title>
         <meta
@@ -11,7 +11,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-16 py-0 flex flex-col flex-1 justify-center items-center bg-gray-200">
+      <main className="px-16 py-0 flex flex-col flex-1 overflow-x-auto justify-center items-center bg-gray-200">
         {children}
       </main>
       <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">

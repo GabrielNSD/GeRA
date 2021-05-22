@@ -74,7 +74,7 @@ export default function Coletas() {
   return (
     <>
       <h1>Dias de coleta de resíduos na sua região</h1>
-      <div className="h-3/4 w-3/4">
+      <div style={{ width: "80vw" }}>
         <MapWithNoSSR
           initialLocation={["-7.2156", "-48.2456"]}
           polygons={polygons}
@@ -93,7 +93,7 @@ export default function Coletas() {
         <TabPanels>
           <TabPanel>
             {allSchedule.map(({ nome, coleta_caminhao }) => (
-              <>
+              <React.Fragment key={nome}>
                 <div>Rota {nome}</div>
                 {coleta_caminhao
                   .map(
@@ -101,14 +101,14 @@ export default function Coletas() {
                       `${dia} - ${turno}`
                   )
                   .join("; ")}
-              </>
+              </React.Fragment>
             ))}
           </TabPanel>
           <TabPanel>
             {allSchedule
               .filter(({ coleta_seletiva }) => coleta_seletiva.length > 0)
               .map(({ nome, coleta_seletiva }) => (
-                <>
+                <React.Fragment key={nome}>
                   <div>Rota {nome}</div>
                   {coleta_seletiva
                     .map(
@@ -116,7 +116,7 @@ export default function Coletas() {
                         `${dia} - ${turno}`
                     )
                     .join("; ")}
-                </>
+                </React.Fragment>
               ))}
           </TabPanel>
         </TabPanels>
