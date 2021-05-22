@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Tabs, TabPanels, TabList, TabPanel, Tab } from "@reach/tabs";
+import axios from "axios";
+import "@reach/tabs/styles.css";
 
 import { returnInsideZone } from "../../utils/zones";
 
@@ -9,7 +11,7 @@ export default function Coletas() {
     ssr: false,
   });
 
-  const [polygons, setPolygons] = useState([["1", [-7.2158, -48.2456]]]);
+  const [polygons, setPolygons] = useState([]);
   const [userLocation, setUserLocation] = useState(["-7.2156", "-48.2456"]);
   const [userZone, setUserZone] = useState("1");
   const [allSchedule, setAllSchedule] = useState<Array<any>>([]);
@@ -18,50 +20,50 @@ export default function Coletas() {
   console.log("user zone ", userZone);
   console.log("schedule  ind ", crTable);
 
-  const retriveZones = async () => {
+  const retrieveZones = async () => {
     //event.preventDefault();
     const resulArray: Array<any> = [];
     const schedule: Array<any> = [];
 
-    const res = await fetch("http://localhost:1337/zonas", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    });
+    try {
+      const result = await axios.get(
+        "http://localhost:1337/zonas?_sort=nome:asc"
+      );
 
-    const result = await res.json();
-    console.log("result ", result);
-    result.map((item: any) => {
-      resulArray.push([
-        item.nome,
-        item.geometria.geometry.coordinates[0].map(
-          ([lat, long]: [number, number]) => [long, lat]
-        ),
-      ]);
-      schedule.push({
-        nome: item.nome,
-        coleta_caminhao: item.coleta_caminhao,
-        coleta_seletiva: item.coleta_seletiva,
-      });
-    }); //resultArray = [["13". [lat, long]]]
+      console.log("result ", result);
+      result.data.map((item: any) => {
+        resulArray.push([
+          item.nome,
+          item.geometria.geometry.coordinates[0].map(
+            ([lat, long]: [number, number]) => [long, lat]
+          ),
+        ]);
+        schedule.push({
+          nome: item.nome,
+          coleta_caminhao: item.coleta_caminhao,
+          coleta_seletiva: item.coleta_seletiva,
+        });
+      }); //resultArray = [["13". [lat, long]]]
 
-    console.log(resulArray);
-    console.log(
-      "Teste zonas ",
-      returnInsideZone(["-7.2156", "-48.2456"], resulArray)
-    );
-    setUserZone(returnInsideZone(userLocation, resulArray));
-    console.log("schedules array ", schedule);
-    setAllSchedule(schedule);
-    setPolygons(resulArray);
+      console.log(resulArray);
+      console.log(
+        "Teste zonas ",
+        returnInsideZone(["-7.2156", "-48.2456"], resulArray)
+      );
+      setUserZone(returnInsideZone(userLocation, resulArray));
+      console.log("schedules array ", schedule);
+      setAllSchedule(schedule);
+      setPolygons(resulArray);
+    } catch (e) {
+      return;
+    }
   };
 
   const mountCRTable = () => {
     setcrTable(allSchedule.filter((item: any) => item.nome === userZone));
   };
   useEffect(() => {
-    retriveZones();
+    retrieveZones();
     mountCRTable();
   }, []);
 
@@ -71,32 +73,41 @@ export default function Coletas() {
 
   return (
     <>
-      <div className="h-screen w-screen">
-        <Tabs>
-          <TabPanels>
-            <TabPanel>Dias de coleta seletiva na sua região </TabPanel>
-            <TabPanel>
-              <h3>Dias de coleta de resíduos na sua região</h3>{" "}
-              <div className="w-4/5 border-2 border-black rounded-xl">
-                {" "}
-                {/* essa tabela deveria ser alimentada pelo schedule, mas ele funciona de forma itermitente */}
-                Dias de coleta: Segunda, Terça, Sábado <br />
-                Turno: manhã
-              </div>
-            </TabPanel>
-          </TabPanels>
-          <TabList>
-            <Tab>Seletiva</Tab>
-            <Tab>Resíduos</Tab>
-          </TabList>
-        </Tabs>
-        <div className="h-3/4 w-3/4">
-          <MapWithNoSSR
-            initialLocation={["-7.2156", "-48.2456"]}
-            polygons={polygons}
-          />
-        </div>
-      </div>
+      <h1>Dias de coleta de resíduos na sua região</h1>
+      <div className="h-3/4 w-3/4">
+        <MapWithNoSSR
+          initialLocation={["-7.2156", "-48.2456"]}
+          polygons={polygons}
+        />
+      </div>{" "}
+      <Tabs>
+        <TabList>
+          <Tab>
+            <h2>Caminhão</h2>
+          </Tab>
+          <Tab>
+            <h2>Seletiva</h2>
+          </Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            {allSchedule.map(({ nome, coleta_caminhao }) => (
+              <div>{nome}</div>
+            ))}
+            <pre>{JSON.stringify(allSchedule, null, 2)}</pre>
+          </TabPanel>
+          <TabPanel>
+            {" "}
+            <div className="w-4/5 border-2 border-black rounded-xl">
+              {" "}
+              {/* essa tabela deveria ser alimentada pelo schedule, mas ele funciona de forma itermitente */}
+              Dias de coleta: Segunda, Terça, Sábado <br />
+              Turno: manhã
+            </div>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 }
