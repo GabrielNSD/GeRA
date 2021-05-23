@@ -96,7 +96,7 @@ export default function Coletas() {
         <MapWithNoSSR
           initialLocation={userLocation}
           polygons={polygons}
-          centerMarker={true}
+          centerMarker="fixed"
         />
       </div>
       <Tabs className="flex flex-1 flex-col">
