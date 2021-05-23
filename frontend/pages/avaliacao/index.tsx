@@ -4,6 +4,7 @@ import Backdrop from "../../components/Backdrop/Backdrop"
 import ModalMap from "../../components/Modal/ModalMap"
 
 import Image from "next/image"
+import Layout from "../../components/layout/PageLayout"
 import { useRouter } from "next/router"
 import axios from "axios"
 
@@ -46,8 +47,9 @@ export default function Avaliacao() {
       axios.post("http://localhost:1337/quizzes", payload)
     } catch (error) {
     } finally {
-      alert("Agradecemos sua participação!")
-      router.push("/")
+      setIsFinished(true)
+      // alert("Agradecemos sua participação!")
+      // router.push("/")
     }
   }
 
@@ -146,5 +148,5 @@ export default function Avaliacao() {
     )
   }
 
-  return <>{body}</>
+  return <Layout title="Avaliações">{body}</Layout>
 }
