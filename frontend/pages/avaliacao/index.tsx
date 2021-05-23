@@ -5,12 +5,15 @@ import ModalMap from "../../components/Modal/ModalMap"
 
 import Image from "next/image"
 import Layout from "../../components/layout/PageLayout"
+import { useRouter } from "next/router"
+import axios from "axios"
 
 export default function Avaliacao() {
   const [isFinished, setIsFinished] = useState(false)
-  const [regularidade, setRegularidade] = useState("")
+  const [regularidade, setRegularidade] = useState(true)
   const [sugestion, setSugestion] = useState("")
   const [openMap, setOpenMap] = useState(false)
+  const router = useRouter()
 
   const [buttonClass, setButtonClass] = useState(
     "my-4 px-4 bg-gray-400 mx-24 rounded-xl"
@@ -27,13 +30,27 @@ export default function Avaliacao() {
   }
 
   useEffect(() => {
-    if (sugestion.length > 25 && regularidade !== "") {
+    if (sugestion.length > 25 && regularidade !== null) {
       setButtonClass("my-4 px-4 bg-primary mx-24 rounded-xl")
     }
   }, [sugestion])
 
   const sendEvaluation = () => {
-    setIsFinished(true)
+    const payload = {
+      localizacao: [],
+      regularidade_coleta: regularidade,
+      avaliacao_coleta_rsd: 5,
+      descricao: sugestion,
+    }
+
+    try {
+      axios.post("http://localhost:1337/quizzes", payload)
+    } catch (error) {
+    } finally {
+      setIsFinished(true)
+      // alert("Agradecemos sua participação!")
+      // router.push("/")
+    }
   }
 
   let body = (
@@ -69,8 +86,9 @@ export default function Avaliacao() {
             id="sim"
             name="avColeta"
             onClick={() => {
-              setRegularidade("sim")
+              setRegularidade(true)
             }}
+            checked
           />
           <label htmlFor="sim">Sim</label>
         </div>
@@ -80,7 +98,7 @@ export default function Avaliacao() {
             id="nao"
             name="avColeta"
             onClick={() => {
-              setRegularidade("nao")
+              setRegularidade(false)
             }}
           />
           <label htmlFor="sim">Não</label>
