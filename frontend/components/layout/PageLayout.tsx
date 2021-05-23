@@ -37,7 +37,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {navbar}
-      <main className="py-0 mt-16 flex flex-col flex-1 justify-center items-center bg-white rounded-t-2xl z-100">
+      <main className="mt-16 flex flex-col flex-1 justify-center items-center bg-white w-screen max-w-screen z-100">
         {children}
       </main>
       {/* <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">
