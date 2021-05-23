@@ -2,8 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, title }: { children: React.ReactNode, title:string }) {
   const router = useRouter();
+  console.log(title)
   let navbar
   if(children.type) {
     if (children.type.name !== "Home") {

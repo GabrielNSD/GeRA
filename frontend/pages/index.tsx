@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export default function Home({title}:{title:string}) {
+  title = "Home"
   return (
     <div className="flex flex-col flex-1 justify-center items-center top-0 z-1000">
       <progress value="70" max="100" className="mb-1"></progress>
