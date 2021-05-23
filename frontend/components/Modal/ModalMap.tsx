@@ -15,7 +15,7 @@ const ModalMap = (props: ModalMapProps) => {
 
   if (props.openModalMap) {
     modalClasses =
-      "rounded-2xl h-1/2 bg-white shadow-md fixed left-1/3 top-1/3 w-1/2 z-20  p-2 transform translate-x-0 flex";
+      "rounded-2xl h-1/2 md:h-2/3 bg-white shadow-md fixed left-4 md:left-1/3 top-1/4 md:top-1/4 w-11/12 md:w-1/2 z-20  p-2 transform translate-x-0 flex";
   }
 
   return(

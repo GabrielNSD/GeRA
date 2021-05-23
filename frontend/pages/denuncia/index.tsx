@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import ModalMap from "../../components/Modal/ModalMap";
+
+import Image from "next/image";
 
 export default function Denuncia() {
   const [lat, setLat] = useState("-7.1877");
@@ -8,7 +10,10 @@ export default function Denuncia() {
 
   const [openMap, setOpenMap] = useState(false);
 
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
+  const [buttonClass, setButtonClass] = useState(
+    "my-4 px-4 bg-gray-400 mx-24 rounded-xl"
+  );
 
   const success = (position: any) => {
     const latitude = position.coords.latitude;
@@ -60,19 +65,64 @@ export default function Denuncia() {
     backdrop = <Backdrop click={backdropClickHandler} />;
   }
 
+  useEffect(() => {
+    console.log(description.length);
+    if (description.length > 49) {
+      setButtonClass("my-4 px-4 bg-primary mx-24 rounded-xl");
+    }
+  }, [description]);
+
   return (
-    <>
-    {backdrop}
-      <h1>Denúncia</h1>
-      <div>
-        <ModalMap openModalMap={openMap} initialLocation={["-7.1877","-48.2098"]}/> {/* use [lat,long] for initialLocation instead */}
-        <button onClick={()=>{setOpenMap(prevState => !prevState)}}>Informar localidade</button>
-        <form>
-            <label>Descrição</label>
-            <input type="text" name="descricao" id="descricao" onChange={(e)=>{setDescription(e.target.value)}}></input>
-            <button type="submit" onClick={()=>{sendComplaint()}}>Enviar</button>
-        </form>
+    <div className="flex-1 h-full w-screen flex flex-col max-w-screen">
+      <ModalMap
+        openModalMap={openMap}
+        initialLocation={["-7.1877", "-48.2098"]}
+      />
+      {backdrop}
+      <div className="mx-4 text-sm">
+        Local reservado para fazer denúncias ou reportar problemas
       </div>
-    </>
+      <div className="flex justify-end">
+        <Image
+          src="/icons/denuncia-user.svg"
+          alt="faça sua denúncia"
+          height="184px"
+          width="184px"
+        />
+      </div>
+      <div className="flex justify-between mx-4">
+        <div className="my-1">Endereço</div>
+        <div
+          className="text-xs"
+          onClick={() => {
+            setOpenMap((prevState) => !prevState);
+          }}
+        >
+          ver no mapa
+          <Image
+            src="/icons/pin.svg"
+            alt="ver no mapa"
+            height="12px"
+            width="12px"
+          />
+        </div>
+      </div>
+      <input
+        type="text"
+        placeholder="Logradouro, Número"
+        className="border-2 flex-2 text-xs mx-4 py-2 shadow-md rounded-xl"
+      ></input>
+      <div className="mx-4 my-2">Descreva o problema encontrado</div>
+      <input
+        type="text"
+        placeholder="Ex.: Em 22/05/2021 vi em um terreno baldio..."
+        className="border-2 h-full text-xs mx-4 flex-1 align-text-top rounded-xl shadow-md"
+        onChange={(e) => {
+          setDescription(e.target.value);
+        }}
+      ></input>{" "}
+      {/* use [lat,long] for initialLocation instead */}
+      <button className={buttonClass} onClick={sendComplaint}>Enviar</button>
+    </div>
   );
 }
