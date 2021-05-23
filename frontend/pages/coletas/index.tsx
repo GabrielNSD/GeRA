@@ -9,6 +9,8 @@ import {
 } from "@reach/disclosure"
 import "@reach/tabs/styles.css"
 
+import Layout from "../../components/layout/PageLayout"
+
 import { returnInsideZone } from "../../utils/zones"
 
 export default function Coletas() {
@@ -87,7 +89,7 @@ export default function Coletas() {
   }, [userZone])
 
   return (
-    <>
+    <Layout title="Coleta">
       <h1>Dias de coleta de resíduos na sua região</h1>
       <div
         className="bg-white rounded shadow-md relative -bottom-full z-20 p-1 mt-4 mb-8"
@@ -164,6 +166,6 @@ export default function Coletas() {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </>
+    </Layout>
   )
 }

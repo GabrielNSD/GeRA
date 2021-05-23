@@ -1,31 +1,42 @@
-import Head from "next/head";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import Head from "next/head"
+import Image from "next/image"
+import { useRouter } from "next/router"
 
-function Layout({ children, title }: { children: React.ReactNode, title:string }) {
-  const router = useRouter();
+function Layout({
+  children,
+  title,
+}: {
+  children: React.ReactNode
+  title: string
+}) {
+  const router = useRouter()
   console.log(title)
   let navbar
-  if(children.type) {
-    if (children.type.name !== "Home") {
-      navbar = <header className="flex flex-col fixed w-full bg-primary top-0 h-16 z-50">
-      <nav
-        className="flex flex-1 content-center pl-4"
-        onClick={() => {
-          router.back();
-        }}
-      >
-        <Image
-          src="/icons/back-arrow.svg"
-          alt="voltar"
-          width="25px"
-          height="25 px"
-        />
-      </nav>
-      <div className="bg-white rounded-t-3xl h-4"></div>
-    </header>
+  if (title) {
+    if (title !== "Home") {
+      navbar = (
+        <header className="flex flex-col fixed w-full bg-primary top-0 h-16 z-50">
+          <nav className="flex flex-1 pl-4">
+            <button
+              onClick={() => {
+                router.back()
+              }}
+            >
+              <Image
+                src="/icons/back-arrow.svg"
+                alt="voltar"
+                width="25px"
+                height="25 px"
+              />
+            </button>
+            <div className="flex-1 justify-self-center self-center">
+              {title}
+            </div>
+          </nav>
+          <div className="bg-white rounded-t-3xl h-4"></div>
+        </header>
+      )
     }
-
   }
   return (
     <div className="page flex flex-col min-h-screen justify-between relative">
@@ -52,7 +63,7 @@ function Layout({ children, title }: { children: React.ReactNode, title:string }
         </a>
       </footer> */}
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

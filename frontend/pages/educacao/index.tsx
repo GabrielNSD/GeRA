@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import Backdrop from "../../components/Backdrop/Backdrop"
 import InfoModal from "../../components/Modal/InfoModal"
+import Layout from "../../components/layout/PageLayout"
 
 const InfoData = {
   organicos: {
@@ -249,7 +250,7 @@ export default function Educacao() {
   }
 
   return (
-    <>
+    <Layout title="Informações">
       {backdrop}
       <InfoModal content={modalContent} isOpen={infoModalOpen} />
       <div className="flex flex-col justify-between flex-1">
@@ -320,7 +321,7 @@ export default function Educacao() {
         <div
           className="p-4 py-2 my-2  w-52 bg-gray-50 rounded-md shadow-md flex justify-around"
           onClick={() => {
-            //setModalContent(InfoData.separacao.textContent)
+            setModalContent(InfoData.separacao.content)
             setInfoModalOpen((prevState) => !prevState)
           }}
         >
@@ -333,6 +334,6 @@ export default function Educacao() {
           Separação
         </div>
       </div>
-    </>
+    </Layout>
   )
 }

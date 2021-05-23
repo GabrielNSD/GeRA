@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import Layout from "../components/layout/PageLayout"
+
 export default function Home({title}:{title:string}) {
   title = "Home"
   return (
+    <Layout title="Home">
     <div className="flex flex-col flex-1 justify-center items-center top-0 z-1000">
       <progress value="70" max="100" className="mb-1"></progress>
       <div className="mb-8">3 dias até a próxima coleta</div>
@@ -62,5 +65,6 @@ export default function Home({title}:{title:string}) {
         </Link>
       </div>
     </div>
+    </Layout>
   );
 }
