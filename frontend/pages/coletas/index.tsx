@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
-import { Tabs, TabPanels, TabList, TabPanel, Tab } from "@reach/tabs"
 import axios from "axios"
+import { Tabs, TabPanels, TabList, TabPanel, Tab } from "@reach/tabs"
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@reach/disclosure"
 import "@reach/tabs/styles.css"
 
 import { returnInsideZone } from "../../utils/zones"
@@ -12,7 +17,7 @@ export default function Coletas() {
   })
 
   const [polygons, setPolygons] = useState([])
-  const [userLocation, setUserLocation] = useState([-7.2156, -48.2456])
+  const [userLocation, setUserLocation] = useState([-7.191166, -48.202622])
   const [userZone, setUserZone] = useState(null)
   const [allSchedule, setAllSchedule] = useState<Array<any>>([])
   const [crTable, setcrTable] = useState(null)
@@ -21,7 +26,7 @@ export default function Coletas() {
     if (navigator?.geolocation) {
       navigator.geolocation.getCurrentPosition(success)
     } else {
-      setUserLocation([-7.1877, -48.2098])
+      setUserLocation([-7.191166, -48.202622])
     }
   }
 
@@ -74,7 +79,7 @@ export default function Coletas() {
 
   useEffect(() => {
     retrieveZones()
-    // mountCRTable()
+    mountCRTable()
   }, [])
 
   useEffect(() => {
@@ -84,15 +89,18 @@ export default function Coletas() {
   return (
     <>
       <h1>Dias de coleta de resíduos na sua região</h1>
-      <div style={{ minWidth: "300px", width: "80vh", height: "80vw" }}>
+      <div
+        className="bg-white rounded shadow-md relative -bottom-full z-20 p-1 mt-4 mb-8"
+        style={{ width: "90vw", height: "50vh" }}
+      >
         <MapWithNoSSR
           initialLocation={userLocation}
           polygons={polygons}
           centerMarker={true}
         />
-      </div>{" "}
-      <Tabs>
-        <TabList>
+      </div>
+      <Tabs className="flex flex-1 flex-col">
+        <TabList className="tablist bg-primary flex flex-row flex-1 h-4 justify-evenly flex-grow-0">
           <Tab>
             <h2>Caminhão</h2>
           </Tab>
@@ -101,10 +109,10 @@ export default function Coletas() {
           </Tab>
         </TabList>
 
-        <TabPanels>
+        <TabPanels className="p-4">
           <TabPanel>
             {allSchedule.find((item: any) => item.nome === userZone)
-              ?.coleta_caminhao
+              ?.coleta_caminhao.length > 0
               ? `A coleta em sua localização atual (Rota ${userZone}) ocorre nos seguintes dias/horários: ${allSchedule
                   .find((item: any) => item.nome === userZone)
                   .coleta_caminhao.map(
@@ -113,21 +121,33 @@ export default function Coletas() {
                   )
                   .join("; ")}`
               : "Não há cobertura de coleta de resíduos domiciliares na sua localização atual"}
-            {allSchedule.map(({ nome, coleta_caminhao }) => (
-              <React.Fragment key={nome}>
-                <div>Rota {nome}</div>
-                {coleta_caminhao
-                  .map(
-                    ({ dia, turno }: { dia: string; turno: string }) =>
-                      `${dia} - ${turno}`
-                  )
-                  .join("; ")}
-              </React.Fragment>
-            ))}
+            <Disclosure>
+              <DisclosureButton className="bg-primary rounded-lg text-gray-800 m-4 p-2">
+                Veja todas as rotas de coleta de resíduos domiciliares
+              </DisclosureButton>
+              <DisclosurePanel>
+                {allSchedule.map(({ nome, coleta_caminhao }) => (
+                  <div
+                    className="border-primary border-b-2 border-opacity-50"
+                    key={nome}
+                  >
+                    <div>Rota {nome}</div>
+                    {coleta_caminhao
+                      .map(
+                        ({ dia, turno }: { dia: string; turno: string }) =>
+                          `${dia} - ${turno}`
+                      )
+                      .join("; ")}
+                  </div>
+                ))}
+              </DisclosurePanel>
+            </Disclosure>
           </TabPanel>
           <TabPanel>
-            {allSchedule.coleta_seletiva ??
-              "Não há cobertura de coleta seletiva na sua localização atual"}
+            {allSchedule.find((item: any) => item.nome === userZone)
+              ?.coleta_seletiva.length > 0
+              ? ""
+              : "Não há cobertura de coleta seletiva na sua localização atual"}
             {allSchedule
               .filter(({ coleta_seletiva }) => coleta_seletiva.length > 0)
               .map(({ nome, coleta_seletiva }) => (
