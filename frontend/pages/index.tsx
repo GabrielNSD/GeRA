@@ -12,9 +12,19 @@ export default function Home({ title }: { title: string }) {
   title = "Home"
   return (
     <Layout title="Home">
-      <div className="flex flex-col flex-1 justify-center items-center top-0 z-1000">
-        <progress value="70" max="100" className="mb-1"></progress>
-        <div className="mb-8">{timeUntil} até a próxima coleta</div>
+      <div className="flex flex-col justify-center items-center top-0 z-1000">
+        <div className="mb-8 ml-10">
+          <Image
+            src="/images/gera.png"
+            alt="gera"
+            height="200px"
+            width="250px"
+          />
+        </div>
+        <div className="text-lg">{timeUntil} </div>
+        <div className="text-xs">até a próxima coleta</div>
+        <progress value="70" max="100" className="mb-8"></progress>
+
         <div className="grid grid-cols-2 grid-row-2 gap-x-4 w-52">
           <Link href="/educacao">
             <a>
