@@ -66,7 +66,6 @@ export default function Denuncia() {
   }
 
   useEffect(() => {
-    console.log(description.length);
     if (description.length > 49) {
       setButtonClass("my-4 px-4 bg-primary mx-24 rounded-xl");
     }
@@ -90,15 +89,14 @@ export default function Denuncia() {
           width="184px"
         />
       </div>
-      <div className="flex justify-between mx-4">
-        <div className="my-1">Endereço</div>
+      <div className="flex justify-center mx-4">
         <div
-          className="text-xs"
+          className=""
           onClick={() => {
             setOpenMap((prevState) => !prevState);
           }}
         >
-          ver no mapa
+          Localização
           <Image
             src="/icons/pin.svg"
             alt="ver no mapa"
@@ -107,11 +105,6 @@ export default function Denuncia() {
           />
         </div>
       </div>
-      <input
-        type="text"
-        placeholder="Logradouro, Número"
-        className="border-2 flex-2 text-xs mx-4 py-2 shadow-md rounded-xl"
-      ></input>
       <div className="mx-4 my-2">Descreva o problema encontrado</div>
       <input
         type="text"
@@ -122,7 +115,9 @@ export default function Denuncia() {
         }}
       ></input>{" "}
       {/* use [lat,long] for initialLocation instead */}
-      <button className={buttonClass} onClick={sendComplaint}>Enviar</button>
+      <button className={buttonClass} onClick={sendComplaint}>
+        Enviar
+      </button>
     </div>
   );
 }
