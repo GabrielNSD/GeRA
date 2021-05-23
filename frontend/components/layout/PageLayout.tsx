@@ -1,6 +1,31 @@
 import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  let navbar
+  if(children.type) {
+    if (children.type.name !== "Home") {
+      navbar = <header className="flex flex-col fixed w-full bg-primary top-0 h-16 z-50">
+      <nav
+        className="flex flex-1 content-center pl-4"
+        onClick={() => {
+          router.back();
+        }}
+      >
+        <Image
+          src="/icons/back-arrow.svg"
+          alt="voltar"
+          width="25px"
+          height="25 px"
+        />
+      </nav>
+      <div className="bg-white rounded-t-3xl h-4"></div>
+    </header>
+    }
+
+  }
   return (
     <div className="page flex flex-col min-h-screen justify-between relative">
       <Head>
@@ -11,7 +36,8 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="py-0 flex flex-col flex-1 justify-center items-center bg-gray-200">
+      {navbar}
+      <main className="py-0 mt-16 flex flex-col flex-1 justify-center items-center bg-white rounded-t-2xl z-100">
         {children}
       </main>
       {/* <footer className="w-full h-24 border-t-2 border-gray-100 flex justify-center place-items-center">
