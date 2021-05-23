@@ -178,61 +178,45 @@ const InfoData = {
     imageUrl: "",
     textContent:
       "Separação Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum",
-      content: (
-        <div className="flex flex-col items-center">
-          <div className="p-4 py-2 my-2 w-52 bg-primary rounded-2xl shadow-md flex justify-around">
-            <Image
-              src="/icons/box.svg"
-              alt="Saiba mais sobre separação"
-              width="30px"
-              height="30px"
-            />
-            Recicláveis
-          </div>
-          <div>
-            <p>
-              Resíduos recicláveis são capazes de passar pelo processo de
-              transformação. Nesse processo o resíduo pode voltar para o seu
-              estado original ou se transformar em outro produto.
-            </p>
-            <p>
-              Os resíduos recicláveis separados e armazenados corretamente devem
-              estar limpos e secos e, só então, devem seguir para o armazenamento.
-            </p>
-  
-            <p>
-              Para facilitar a armazenagem os resíduos devem ser separados através
-              das cores, que definem sua classificação:
-            </p>
-            <ul>
-              <li>Azul: papel/papelão</li>
-              <li>Vermelho: plástico</li>
-              <li>Verde: vidro</li>
-              <li>Amarelo: metal</li>
-              <li>Preto: madeira</li>
-              <li>Laranja: resíduos perigosos</li>
-              <li>Branco: resíduos dos serviços de saúde</li>
-              <li>Roxo: resíduos radioativos</li>
-              <li>Marrom: resíduos orgânicos</li>
-              <li>Cinza: resíduo geral não reciclável</li>
-            </ul>
-            <p>
-              Para o correto armazenamento não misture os resíduos recicláveis com
-              os orgânicos. Os resíduos recicláveis devem ser lavados e secados
-              antes de armazenar. Papéis devem estar secos e não podem ser
-              amassados, somente dobrados.
-            </p>
-            <div className="flex-1 justify-self-center place-self-center">
-              <Image
-                src="/images/seletiva.png"
-                alt="composteira"
-                height="105px"
-                width="250px"
-              />
-            </div>
-          </div>
+    content: (
+      <div className="flex flex-col items-center">
+        <div className="p-4 py-2 my-2 w-52 bg-primary rounded-2xl shadow-md flex justify-around">
+          <Image
+            src="/icons/box.svg"
+            alt="Saiba mais sobre gestão de resíduos"
+            width="30px"
+            height="30px"
+          />
+          Gestão de Resíduos
         </div>
-      ),
+        <div>
+          <p>
+            A Política Nacional de Resíduos Sólidos (PNRS) foi instituída a
+            partir da Lei 12.305/2010 e atua como ferramenta que orienta a
+            construção de instrumentos de gestão dos resíduos sólidos no Brasil.
+            Tem o objetivo de estimular a adoção de ações que integrem vários
+            atores sociais na busca de soluções para o problema dos resíduos
+            sólidos, incluindo os próprios consumidores/geradores.
+          </p>
+          <p>
+            Em esfera municipal, leis complementares objetivam o plano de ação
+            para alcançar metas estratégicas no tratamento dos resíduos sólidos,
+            ele é chamado de Política Municipal de Gestão Integrada de Resíduos
+            Sólidos (PMGIRS) e deve ser aplicado conforme as particularidades de
+            cada cidade, demonstrando sua capacidade na gestão dos resíduos.
+          </p>
+
+          <p>
+            Em concordância com o PMGIRS, a Lei 12.305/2013 estabelece
+            prioridade na gestão dos resíduos sólidos para as alternativas na
+            seguinte sequência: não geração, redução, reutilização, reciclagem,
+            tratamento dos resíduos sólidos e disposição final ambientalmente
+            correta dos rejeitos. Todos os aspectos dependem não só de ações
+            governamentais, mas também da educação ambiental de todos.
+          </p>
+        </div>
+      </div>
+    ),
   },
 }
 
@@ -331,7 +315,7 @@ export default function Educacao() {
             width="30px"
             height="30px"
           />{" "}
-          Separação
+          Gestão de Resíduos
         </div>
       </div>
     </Layout>
