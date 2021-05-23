@@ -12,6 +12,7 @@
     "@reach/tabs": "^0.15.0",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
+    "date-fns": "^2.21.3",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geosearch": "^3.3.2",
