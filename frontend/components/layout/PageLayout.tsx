@@ -2,7 +2,7 @@ import Head from "next/head";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="page flex flex-col h-screen justify-between relative">
+    <div className="page flex flex-col min-h-screen justify-between relative">
       <Head>
         <title>GeRA - Gestão de Resíduos Sólidos de Araguaína</title>
         <meta
