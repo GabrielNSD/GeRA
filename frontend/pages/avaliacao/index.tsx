@@ -1,39 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import Backdrop from "../../components/Backdrop/Backdrop";
-import ModalMap from "../../components/Modal/ModalMap";
+import Backdrop from "../../components/Backdrop/Backdrop"
+import ModalMap from "../../components/Modal/ModalMap"
 
-import Image from "next/image";
+import Image from "next/image"
+import { useRouter } from "next/router"
+import axios from "axios"
 
 export default function Avaliacao() {
-  const [isFinished, setIsFinished] = useState(false);
-  const [regularidade, setRegularidade] = useState("");
-  const [sugestion, setSugestion] = useState("");
-  const [openMap, setOpenMap] = useState(false);
+  const [isFinished, setIsFinished] = useState(false)
+  const [regularidade, setRegularidade] = useState(true)
+  const [sugestion, setSugestion] = useState("")
+  const [openMap, setOpenMap] = useState(false)
+  const router = useRouter()
 
   const [buttonClass, setButtonClass] = useState(
     "my-4 px-4 bg-gray-400 mx-24 rounded-xl"
-  );
+  )
 
   const backdropClickHandler = () => {
-    setOpenMap(false);
-  };
+    setOpenMap(false)
+  }
 
-  let backdrop = null;
+  let backdrop = null
 
   if (openMap) {
-    backdrop = <Backdrop click={backdropClickHandler} />;
+    backdrop = <Backdrop click={backdropClickHandler} />
   }
 
   useEffect(() => {
-    if (sugestion.length > 25 && regularidade !== "") {
-      setButtonClass("my-4 px-4 bg-primary mx-24 rounded-xl");
+    if (sugestion.length > 25 && regularidade !== null) {
+      setButtonClass("my-4 px-4 bg-primary mx-24 rounded-xl")
     }
-  }, [sugestion]);
+  }, [sugestion])
 
   const sendEvaluation = () => {
-    setIsFinished(true);
-  };
+    const payload = {
+      localizacao: [],
+      regularidade_coleta: regularidade,
+      avaliacao_coleta_rsd: 5,
+      descricao: sugestion,
+    }
+
+    try {
+      axios.post("http://localhost:1337/quizzes", payload)
+    } catch (error) {
+    } finally {
+      alert("Agradecemos sua participação!")
+      router.push("/")
+    }
+  }
 
   let body = (
     <>
@@ -49,7 +65,7 @@ export default function Avaliacao() {
       <div
         className="text-sm"
         onClick={() => {
-          setOpenMap((prevState) => !prevState);
+          setOpenMap((prevState) => !prevState)
         }}
       >
         Localização
@@ -68,8 +84,9 @@ export default function Avaliacao() {
             id="sim"
             name="avColeta"
             onClick={() => {
-              setRegularidade("sim");
+              setRegularidade(true)
             }}
+            checked
           />
           <label htmlFor="sim">Sim</label>
         </div>
@@ -79,7 +96,7 @@ export default function Avaliacao() {
             id="nao"
             name="avColeta"
             onClick={() => {
-              setRegularidade("nao");
+              setRegularidade(false)
             }}
           />
           <label htmlFor="sim">Não</label>
@@ -105,14 +122,14 @@ export default function Avaliacao() {
         placeholder="Ex.: Em 22/05/2021 a coleta não ocorreu..."
         className="border-2 h-full text-xs mx-4 flex-1 align-text-top rounded-xl shadow-md w-full px-4"
         onChange={(e) => {
-          setSugestion(e.target.value);
+          setSugestion(e.target.value)
         }}
       ></input>
       <button className={buttonClass} onClick={sendEvaluation}>
         Enviar
       </button>
     </>
-  );
+  )
 
   if (isFinished) {
     body = (
@@ -126,8 +143,8 @@ export default function Avaliacao() {
         />
         <p className="mb-28">Obrigado pela sua avaliação!</p>
       </>
-    );
+    )
   }
 
-  return <>{body}</>;
+  return <>{body}</>
 }
