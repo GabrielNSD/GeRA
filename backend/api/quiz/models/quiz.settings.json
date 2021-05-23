@@ -18,9 +18,20 @@
     },
     "avaliacao_coleta_rsd": {
       "type": "integer",
-      "max": 10,
+      "max": 5,
       "min": 1,
       "default": 1,
+      "required": true
+    },
+    "descricao": {
+      "type": "string",
+      "required": true,
+      "maxLength": 2000,
+      "minLength": 20
+    },
+    "regularidade_coleta": {
+      "type": "boolean",
+      "default": true,
       "required": true
     }
   }
