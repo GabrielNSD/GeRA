@@ -7,7 +7,7 @@ interface MapProps {
   initialLocation: Array<any>
   polygons?: Array<any>
   markers?: Array<any>
-  centerMarker?: boolean
+  centerMarker?: boolean | "fixed"
 }
 
 const Map = (props: MapProps) => {
@@ -45,8 +45,11 @@ const Map = (props: MapProps) => {
           ))
         : null}
 
-      {props.centerMarker && (
-        <Marker position={initialLocation} draggable={true} />
+      {props.centerMarker !== false && (
+        <Marker
+          position={initialLocation}
+          draggable={props.centerMarker !== "fixed"}
+        />
       )}
 
       {/* <Polygon positions={testArea}></Polygon> */}
