@@ -60,7 +60,7 @@ export default function Educacao() {
           </div>
           <div>
             <Image
-              src="/icons/info.svg"
+              src="/icons/i.svg"
               alt="informações"
               width="90px"
               height="100px"
@@ -87,7 +87,7 @@ export default function Educacao() {
         <div
           className="p-4 py-2 my-2  w-52 bg-gray-50 rounded-md shadow-md flex justify-around"
           onClick={() => {
-            setModalContent(InfoData.organicos.textContent);
+            setModalContent(InfoData.reciclaveis.textContent);
             setInfoModalOpen((prevState) => !prevState);
           }}
         >
@@ -102,7 +102,7 @@ export default function Educacao() {
         <div
           className="p-4 py-2 my-2  w-52 bg-gray-50 rounded-md shadow-md flex justify-around"
           onClick={() => {
-            setModalContent(InfoData.organicos.textContent);
+            setModalContent(InfoData.rejeitos.textContent);
             setInfoModalOpen((prevState) => !prevState);
           }}
         >
@@ -117,7 +117,7 @@ export default function Educacao() {
         <div
           className="p-4 py-2 my-2  w-52 bg-gray-50 rounded-md shadow-md flex justify-around"
           onClick={() => {
-            setModalContent(InfoData.organicos.textContent);
+            setModalContent(InfoData.separacao.textContent);
             setInfoModalOpen((prevState) => !prevState);
           }}
         >
